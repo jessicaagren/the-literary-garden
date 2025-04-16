@@ -2,12 +2,26 @@
   position: sticky;
   display: flex;
   justify-content: center;
+  align-items: center;
   gap: 1.5rem;
   padding: 2rem;
   background-color: #ede2d1;
+}
+a {
+  color: #402521;
+  font-family: 'Michelia';
+  font-size: 2rem;
+  text-decoration: none;
 }
 
 .title {
   font-family: 'Milven';
   font-size: 2.5rem;
+  color: #402521;
+}
+
+.title2 {
+  font-family: 'ArastinPro';
+  font-size: 2.5rem;
+  color: #402521;
 }
