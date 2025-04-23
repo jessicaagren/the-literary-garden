@@ -1,7 +1,11 @@
+import BookCard from '../components/BookCard/BookCard';
+
 export default function BrowsePage() {
   return (
     <>
-      <div>Browse</div>
+      <div>
+        <BookCard />
+      </div>
     </>
   );
 }
