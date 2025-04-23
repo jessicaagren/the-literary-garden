@@ -4,7 +4,7 @@ import './Hero.scss';
 export default function Hero() {
   return (
     <div className='Hero'>
-      <Button title='Browse' />
+      <Button title='Browse' to='/browse' />
     </div>
   );
 }
