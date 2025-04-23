@@ -1,17 +1,29 @@
 .NavBar {
   position: sticky;
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
   gap: 1.5rem;
   padding: 2rem;
   background-color: #ede2d1;
 }
+
+.NavBarMenu {
+  display: flex;
+  justify-content: space-between;
+  min-width: 50%;
+}
+
 a {
-  color: #402521;
-  font-family: 'Michelia';
-  font-size: 2rem;
   text-decoration: none;
+
+  &.Link {
+    color: #402521;
+    font-size: 2rem;
+    font-family: Mixone;
+    //   font-variant: small-caps;
+    margin-bottom: -5px;
+  }
 }
 
 .title {
@@ -20,8 +32,13 @@ a {
   color: #402521;
 }
 
+.TitleLink {
+  align-self: flex-start;
+}
+
 .title2 {
   font-family: 'ArastinPro';
   font-size: 2.5rem;
   color: #402521;
+  font-weight: lighter;
 }
