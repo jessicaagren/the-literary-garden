@@ -1,5 +1,10 @@
+import Button from '../Button/Button';
 import './Hero.scss';
 
 export default function Hero() {
-  return <footer className='Hero'>Hero</footer>;
+  return (
+    <div className='Hero'>
+      <Button title='Browse' />
+    </div>
+  );
 }
