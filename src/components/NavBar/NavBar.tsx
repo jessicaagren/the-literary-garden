@@ -4,7 +4,6 @@ import './NavBar.scss';
 export default function Navbar() {
   return (
     <nav className='NavBar'>
-      {/* <h1 className='title'>The Literary Garden</h1> */}
       <Link to='/'>
         <h1 className='title2'>The Literary Garden</h1>
       </Link>
