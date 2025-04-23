@@ -1,25 +1,33 @@
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import './NavBar.scss';
 
 export default function Navbar() {
   return (
     <nav className='NavBar'>
-      <Link to='/'>
+      <NavLink to='/'>
         <h1 className='NavBar__title'>The Literary Garden</h1>
-      </Link>
+      </NavLink>
       <div className='NavBar__menu'>
-        <Link to='/' className='Link'>
+        <NavLink
+          to='/'
+          className={({ isActive }) => `Link ${isActive ? 'active' : ''}`}>
           Home
-        </Link>
-        <Link to='/my-books' className='Link'>
+        </NavLink>
+        <NavLink
+          to='/my-books'
+          className={({ isActive }) => `Link ${isActive ? 'active' : ''}`}>
           My Books
-        </Link>
-        <Link to='/browse' className='Link'>
+        </NavLink>
+        <NavLink
+          to='/browse'
+          className={({ isActive }) => `Link ${isActive ? 'active' : ''}`}>
           Browse
-        </Link>
-        <Link to='/search' className='Link'>
+        </NavLink>
+        <NavLink
+          to='/search'
+          className={({ isActive }) => `Link ${isActive ? 'active' : ''}`}>
           Search
-        </Link>
+        </NavLink>
       </div>
     </nav>
   );

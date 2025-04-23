@@ -23,6 +23,10 @@ a {
     font-family: Mixone;
     //   font-variant: small-caps;
     margin-bottom: -5px;
+
+    &.active {
+      background-color: red;
+    }
   }
 }
 
