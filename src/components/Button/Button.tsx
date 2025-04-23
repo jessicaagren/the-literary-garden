@@ -3,17 +3,23 @@ import './Button.scss';
 
 interface ButtonProps {
   title: string;
-  to: string;
+  to?: string;
+  onClick?: () => void;
 }
 
-export default function Button({ title, to }: ButtonProps) {
-  let navigate = useNavigate();
+export default function Button({ title, to, onClick }: ButtonProps) {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    if (to) {
+      navigate(to);
+    } else if (onClick) {
+      onClick();
+    }
+  };
+
   return (
-    <button
-      className='Button'
-      onClick={() => {
-        navigate(to);
-      }}>
+    <button className='Button' onClick={handleClick}>
       {title}
     </button>
   );
