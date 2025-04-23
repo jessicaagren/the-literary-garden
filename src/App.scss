@@ -28,6 +28,12 @@ main {
   flex: 1;
 }
 
+button,
+input {
+  font-family: Mixone;
+  font-size: 18px;
+}
+
 @font-face {
   font-family: 'ArastinPro';
   src: url('./assets/fonts/arastin_pro/ArastinPro.ttf');
