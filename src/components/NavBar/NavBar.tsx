@@ -5,9 +5,9 @@ export default function Navbar() {
   return (
     <nav className='NavBar'>
       <Link to='/'>
-        <h1 className='title2'>The Literary Garden</h1>
+        <h1 className='NavBar__title'>The Literary Garden</h1>
       </Link>
-      <div className='NavBarMenu'>
+      <div className='NavBar__menu'>
         <Link to='/' className='Link'>
           Home
         </Link>

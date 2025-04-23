@@ -8,7 +8,7 @@
   background-color: #ede2d1;
 }
 
-.NavBarMenu {
+.NavBar__menu {
   display: flex;
   justify-content: space-between;
   min-width: 50%;
@@ -26,17 +26,7 @@ a {
   }
 }
 
-.title {
-  font-family: 'Milven';
-  font-size: 2.5rem;
-  color: #402521;
-}
-
-.TitleLink {
-  align-self: flex-start;
-}
-
-.title2 {
+.NavBar__title {
   font-family: 'ArastinPro';
   font-size: 2.5rem;
   color: #402521;
