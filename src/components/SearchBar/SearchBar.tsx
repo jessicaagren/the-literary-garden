@@ -13,7 +13,7 @@ export default function SearchBar() {
   return (
     <div className='SearchBarWrapper'>
       <form onSubmit={handleSubmit} role='search' className='SearchBar'>
-        <label htmlFor='search'>Search for stuff</label>
+        <label htmlFor='search'></label>
         <input
           id='search'
           type='search'
@@ -24,7 +24,6 @@ export default function SearchBar() {
           onChange={(e) => setQuery(e.target.value)}
         />
         <button type='submit'>
-          {' '}
           <FaSearch />
         </button>
       </form>

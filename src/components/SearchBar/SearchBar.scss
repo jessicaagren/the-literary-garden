@@ -3,26 +3,25 @@
   justify-items: center;
   align-items: center;
 }
+
 .SearchBar {
   position: relative;
   width: 300px;
-  background: #57bd84;
+  background: #ebab9e;
   border-radius: 0.7rem;
 }
 
 .SearchBar input,
 .SearchBar button {
   height: 50px;
-  //   font-family: 'Lato', sans-serif;
   border: 0;
   color: #2f2f2f;
-  //   font-size: 1.8rem;
 }
 
 .SearchBar input[type='search'] {
   outline: 0;
   width: 100%;
-  background: #fff;
+  background: #fcf9f5;
   padding: 0 1.6rem;
   border-radius: 0.7rem;
   appearance: none;
@@ -34,15 +33,22 @@
 }
 
 .SearchBar button {
-  display: none;
+  /* Flex-container för centrering */
   position: absolute;
   top: 0;
   right: 0;
   width: 6rem;
-  font-weight: bold;
-  background: #57bd84;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #ebab9e;
+  border: none;
   border-radius: 0 0.7rem 0.7rem 0;
   cursor: pointer;
+
+  /* Dölj med opacity */
+  opacity: 0;
+  transition: opacity 0.2s ease, transform 0.1s ease;
 }
 
 .SearchBar input:not(:placeholder-shown) {
@@ -51,7 +57,11 @@
 }
 
 .SearchBar input:not(:placeholder-shown) + button {
-  display: block;
+  opacity: 1;
+}
+
+.SearchBar input:not(:placeholder-shown) + button:active {
+  transform: scale(0.95);
 }
 
 .SearchBar label {
@@ -62,4 +72,22 @@
   height: 1px;
   width: 1px;
   overflow: hidden;
+}
+
+input[type='search']::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+}
+
+input[type='search']::-moz-search-clear-button,
+input[type='search']::-ms-clear {
+  display: none;
+}
+
+input[type='search']:-webkit-autofill,
+input[type='search']:-webkit-autofill:hover,
+input[type='search']:-webkit-autofill:focus,
+input[type='search']:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0px 1000px #fcf9f5 inset !important;
+  box-shadow: 0 0 0px 1000px #fcf9f5 inset !important;
+  -webkit-text-fill-color: #2f2f2f !important;
 }
