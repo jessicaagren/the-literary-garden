@@ -1,5 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import './NavBar.scss';
+import SearchBar from '../SearchBar/SearchBar';
 
 export default function Navbar() {
   return (
@@ -8,11 +9,11 @@ export default function Navbar() {
         <h1 className='NavBar__title'>The Literary Garden</h1>
       </NavLink>
       <div className='NavBar__menu'>
-        <NavLink
+        {/* <NavLink
           to='/'
           className={({ isActive }) => `Link ${isActive ? 'active' : ''}`}>
           Home
-        </NavLink>
+        </NavLink> */}
         <NavLink
           to='/my-books'
           className={({ isActive }) => `Link ${isActive ? 'active' : ''}`}>
@@ -23,11 +24,13 @@ export default function Navbar() {
           className={({ isActive }) => `Link ${isActive ? 'active' : ''}`}>
           Browse
         </NavLink>
-        <NavLink
+        <SearchBar />
+
+        {/* <NavLink
           to='/search'
           className={({ isActive }) => `Link ${isActive ? 'active' : ''}`}>
           Search
-        </NavLink>
+        </NavLink> */}
       </div>
     </nav>
   );
