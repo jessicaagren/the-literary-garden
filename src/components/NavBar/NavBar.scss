@@ -21,11 +21,26 @@ a {
     color: #402521;
     font-size: 2rem;
     font-family: Mixone;
-    //   font-variant: small-caps;
     margin-bottom: -5px;
+    padding: 0.5rem;
+    border-radius: 0.8rem;
+    transition: transform 0.1s ease, background-color 0.2s ease, color 0.2s ease;
+
+    &:hover {
+      color: #ebab9e;
+      transform: translateY(-2px);
+    }
+
+    &:active {
+      transform: scale(0.95);
+    }
 
     &.active {
-      background-color: red;
+      background-color: #fcf6ed;
+
+      &:hover {
+        color: #402521;
+      }
     }
   }
 }
