@@ -1,3 +1,5 @@
+@use '../../styles/variables' as var;
+
 .NavBar {
   position: sticky;
   display: flex;
@@ -5,7 +7,7 @@
   align-items: center;
   gap: 1.5rem;
   padding: 1rem;
-  background-color: #ede2d1;
+  background-color: var.$darkerbeige;
 }
 
 .NavBar__menu {
@@ -18,16 +20,16 @@ a {
   text-decoration: none;
 
   &.Link {
-    color: #402521;
+    color: var.$darkbrown;
     font-size: 2rem;
-    font-family: Mixone;
+    font-family: var.$font-mixone;
     margin-bottom: -5px;
     padding: 0.5rem;
-    border-radius: 0.8rem;
+    border-radius: var.$radius;
     transition: transform 0.1s ease, background-color 0.2s ease, color 0.2s ease;
 
     &:hover {
-      color: #ebab9e;
+      color: var.$pink;
       transform: translateY(-2px);
     }
 
@@ -36,18 +38,45 @@ a {
     }
 
     &.active {
-      background-color: #fcf6ed;
+      background-color: var.$white;
 
       &:hover {
-        color: #402521;
+        color: var.$darkbrown;
       }
     }
   }
 }
 
 .NavBar__title {
-  font-family: 'ArastinPro';
+  font-family: var.$font-arastin-pro;
   font-size: 2.5rem;
-  color: #402521;
+  color: var.$darkbrown;
   font-weight: lighter;
+}
+
+.NavBar__title_wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+
+  & img {
+    max-height: 3.5rem;
+    width: auto;
+
+    &:hover {
+      //   background-color: black;
+      animation: rotate 3s ease-in-out infinite;
+    }
+  }
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
