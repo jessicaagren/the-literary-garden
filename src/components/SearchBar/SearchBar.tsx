@@ -20,8 +20,10 @@ export default function SearchBar() {
     );
     const jsonData = await data.json();
     const results = jsonData.docs as BookSearchResult[];
+
     setSearchResults(results);
-    console.log(results);
+
+    console.log(searchResults);
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
