@@ -1,3 +1,5 @@
+@use '../../styles/variables' as var;
+
 .SearchBarWrapper {
   display: flex;
   justify-items: center;
@@ -7,7 +9,7 @@
 .SearchBar {
   position: relative;
   width: 300px;
-  background: #ebab9e;
+  background: var.$pink;
   border-radius: 0.7rem;
 }
 
@@ -15,25 +17,24 @@
 .SearchBar button {
   height: 50px;
   border: 0;
-  color: #2f2f2f;
+  color: var.$darkbrown;
 }
 
 .SearchBar input[type='search'] {
   outline: 0;
   width: 100%;
-  background: #fcf9f5;
+  background: var.$white;
   padding: 0 1.6rem;
-  border-radius: 0.7rem;
+  border-radius: var.$radius;
   appearance: none;
   transition: all 0.3s cubic-bezier(0, 0, 0.43, 1.49);
   transition-property: width, border-radius;
   z-index: 1;
   position: relative;
-  font-family: 'Inter', sans-serif;
+  font-family: var.$font-cocogoose-ultralight;
 }
 
 .SearchBar button {
-  /* Flex-container för centrering */
   position: absolute;
   top: 0;
   right: 0;
@@ -41,12 +42,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #ebab9e;
+  background: var.$pink;
   border: none;
   border-radius: 0 0.7rem 0.7rem 0;
   cursor: pointer;
 
-  /* Dölj med opacity */
   opacity: 0;
   transition: opacity 0.2s ease, transform 0.1s ease;
 }
@@ -87,7 +87,7 @@ input[type='search']:-webkit-autofill,
 input[type='search']:-webkit-autofill:hover,
 input[type='search']:-webkit-autofill:focus,
 input[type='search']:-webkit-autofill:active {
-  -webkit-box-shadow: 0 0 0px 1000px #fcf9f5 inset !important;
-  box-shadow: 0 0 0px 1000px #fcf9f5 inset !important;
-  -webkit-text-fill-color: #2f2f2f !important;
+  -webkit-box-shadow: 0 0 0px 1000px var.$white inset !important;
+  box-shadow: 0 0 0px 1000px var.$white inset !important;
+  -webkit-text-fill-color: var.$darkbrown !important;
 }
