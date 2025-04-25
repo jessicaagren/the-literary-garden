@@ -5,7 +5,8 @@ import SearchBar from '../SearchBar/SearchBar';
 export default function Navbar() {
   return (
     <nav className='NavBar'>
-      <NavLink to='/'>
+      <NavLink to='/' className='NavBar__title_wrapper'>
+        <img src='src\assets\media\favicon.svg'></img>
         <h1 className='NavBar__title'>The Literary Garden</h1>
       </NavLink>
       <div className='NavBar__menu'>
