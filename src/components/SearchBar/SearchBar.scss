@@ -1,16 +1,15 @@
 @use '../../styles/variables' as var;
+@import '../../styles/mixins.scss';
 
-.SearchBarWrapper {
-  display: flex;
-  justify-items: center;
-  align-items: center;
+.SearchBar__Wrapper {
+  @include flex-center;
 }
 
 .SearchBar {
   position: relative;
   width: 300px;
   background: var.$pink;
-  border-radius: 0.7rem;
+  border-radius: var.$radius;
 }
 
 .SearchBar input,

@@ -1,9 +1,8 @@
 @use '../../styles/variables' as var;
+@import '../../styles/mixins.scss';
 
 .Footer {
   min-height: 3rem;
   background-color: var.$darkerbeige;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  @include flex-center;
 }

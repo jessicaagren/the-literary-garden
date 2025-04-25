@@ -1,7 +1,7 @@
+@import '../../styles/mixins.scss';
+
 .BookCard {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  @include flex-center;
   flex-direction: column;
 }
 
