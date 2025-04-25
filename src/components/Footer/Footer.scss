@@ -1,6 +1,8 @@
+@use '../../styles/variables' as var;
+
 .Footer {
   min-height: 3rem;
-  background-color: #ede2d1;
+  background-color: var.$darkerbeige;
   display: flex;
   justify-content: center;
   align-items: center;
