@@ -1,3 +1,5 @@
+@use './styles/variables' as var;
+
 * {
   margin: 0;
 }
@@ -13,7 +15,7 @@ body {
   height: 100%;
   width: 100%;
   max-width: 100%;
-  font-family: Mixone;
+  font-family: var.$font-mixone;
   font-size: 1.1rem;
 }
 
@@ -24,16 +26,28 @@ body {
 }
 
 main {
-  background-color: #fcf0de;
+  background-color: var.$lightbeige;
   display: flex;
   flex: 1;
 }
 
 button,
 input {
-  font-family: Mixone;
+  font-family: var.$font-mixone;
   font-size: 1.1rem;
 }
+
+// body,
+// input,
+// button,
+// textarea,
+// select {
+//   font-family: 'Inter', sans-serif;
+// }
+
+// @import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;&display=swap');
+
+// @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;&display=swap');
 
 @font-face {
   font-family: 'ArastinPro';
@@ -53,4 +67,14 @@ input {
 @font-face {
   font-family: 'Mixone';
   src: url('./assets/fonts/mixone_2/MIXONE.ttf');
+}
+
+@font-face {
+  font-family: 'CocogooseLight';
+  src: url('./assets/fonts/cocogoose/Cocogoose-Pro-Light-trial.ttf');
+}
+
+@font-face {
+  font-family: 'CocogooseUltralight';
+  src: url('./assets/fonts/cocogoose/Cocogoose-Pro-Ultralight-trial.ttf');
 }
