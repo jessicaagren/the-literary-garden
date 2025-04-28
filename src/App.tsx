@@ -5,6 +5,7 @@ import MyBooksPage from './routes/MyBooksPage';
 import BrowsePage from './routes/BrowsePage';
 import SearchPage from './routes/SearchPage';
 import HomePage from './routes/HomePage';
+import BookDetailsPage from './routes/BookDetailsPage';
 
 const router = createBrowserRouter([
   {
@@ -23,6 +24,12 @@ const router = createBrowserRouter([
       {
         path: 'search',
         element: <SearchPage />,
+        children: [
+          {
+            path: ':bookid',
+            element: <BookDetailsPage />,
+          },
+        ],
       },
     ],
   },
