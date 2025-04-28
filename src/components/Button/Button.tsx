@@ -1,13 +1,26 @@
 import { useNavigate } from 'react-router-dom';
 import './Button.scss';
+import { ReactNode } from 'react';
 
 interface ButtonProps {
-  title: string;
+  className?: string;
+  title?: string;
   to?: string;
   onClick?: () => void;
+  children?: ReactNode;
+  onMouseEnter?: () => void;
+  onMouseLeave?: () => void;
 }
 
-export default function Button({ title, to, onClick }: ButtonProps) {
+export default function Button({
+  className,
+  title,
+  to,
+  onClick,
+  children,
+  onMouseEnter,
+  onMouseLeave,
+}: ButtonProps) {
   const navigate = useNavigate();
 
   const handleClick = () => {
@@ -19,8 +32,14 @@ export default function Button({ title, to, onClick }: ButtonProps) {
   };
 
   return (
-    <button className='Button' onClick={handleClick}>
+    <button
+      className={`BookCard__icon ${className}`}
+      onClick={handleClick}
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}>
+      {' '}
       {title}
+      {children}
     </button>
   );
 }
