@@ -24,11 +24,7 @@ const SearchResults = ({ results }: SearchResultProps) => {
       ) : (
         <div className='SearchResults__Grid'>
           {passedResults.map((result) => (
-            <BookCard
-              title={result.title}
-              author={result.author_name}
-              year={result.first_publish_year}
-            />
+            <BookCard title={result.title} author={result.author_name} />
           ))}
         </div>
       )}
