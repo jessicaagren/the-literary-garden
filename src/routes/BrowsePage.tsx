@@ -1,7 +1,7 @@
 export default function BrowsePage() {
   return (
     <>
-      <div>Browse</div>
+      <div>Browse </div>
     </>
   );
 }
