@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import './SearchBar.scss';
 import { FaSearch } from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom';
 
 export type BookSearchResult = {
   key: string;
@@ -9,9 +10,13 @@ export type BookSearchResult = {
   title: string;
 };
 
-export default function SearchBar() {
+type SearchBarProps = {
+  onResults?: (results: BookSearchResult[]) => void;
+};
+
+export default function SearchBar({ onResults }: SearchBarProps) {
   const [searchInput, setSearchInput] = useState('');
-  const [searchResults, setSearchResults] = useState<BookSearchResult[]>([]);
+  const navigate = useNavigate();
 
   const handleSearch = async () => {
     if (!searchInput.trim()) return;
@@ -19,17 +24,24 @@ export default function SearchBar() {
       `https://openlibrary.org/search.json?title=${searchInput}`
     );
     const jsonData = await data.json();
-    const results = jsonData.docs as BookSearchResult[];
+    const results = (jsonData.docs as any[]).map((doc) => ({
+      key: doc.key,
+      title: doc.title,
+      author_name: doc.author_name || ['Unknown'],
+      first_publish_year: doc.first_publish_year || 'N/A',
+    }));
 
-    setSearchResults(results);
+    if (onResults) {
+      onResults(results);
+    }
 
-    console.log(searchResults);
+    navigate('/search', { state: { results } });
+
+    setSearchInput('');
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter') {
-      handleSearch();
-    }
+    if (e.key === 'Enter') handleSearch();
   };
 
   return (
