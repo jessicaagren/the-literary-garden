@@ -4,6 +4,12 @@
   display: flex;
   max-width: 100%;
   height: auto;
-  align-items: flex-start;
   flex-wrap: wrap;
+}
+
+.SearchResults__Grid {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 3rem;
 }
