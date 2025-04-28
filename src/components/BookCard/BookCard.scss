@@ -1,19 +1,37 @@
-@import '../../styles/mixins.scss';
+@use '../../styles/variables.scss' as var;
 
 .BookCard {
-  @include flex-center;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
   flex-direction: column;
+  max-width: 15vw;
+  gap: 0.5rem;
+
+  p {
+    max-width: 100%;
+    text-align: center;
+  }
 }
 
 .BookCard__image {
-  width: 10vw;
+  max-width: 15vw;
   height: auto;
 }
 
 .BookCard__title {
   font-weight: bold;
+  font-size: 1.3rem;
+  font-family: var.$font-mixone;
+  //   font-family: var.$font-tommy;
 }
 
 .BookCard__author {
-  font-style: italic;
+  //   font-style: italic;
+  font-size: 0.9rem;
+  font-family: var.$font-tommy;
+  white-space: nowrap; /* Förhindra radbrytning */
+  overflow: hidden; /* Döljer överflödig text */
+  text-overflow: ellipsis; /* Lägg till "..." när texten är för lång */
+  max-width: 100%; /* Se till att containerns bredd är korrekt */
 }
