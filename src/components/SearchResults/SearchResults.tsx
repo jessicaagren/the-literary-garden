@@ -12,19 +12,26 @@ const SearchResults = ({ results }: SearchResultProps) => {
   const passedResults =
     (location.state?.results as BookSearchResult[]) || results;
 
+  const searchParams = new URLSearchParams(location.search);
+  const query = searchParams.get('query');
+
   if (!passedResults) {
     return <p>Loading...</p>;
   }
 
   return (
     <div className='SearchResults'>
-      <h1>Search results:</h1>
+      <h1>Search results for: "{query}"</h1>
       {passedResults.length === 0 ? (
         <p>No results found.</p>
       ) : (
         <div className='SearchResults__Grid'>
           {passedResults.map((result) => (
-            <BookCard title={result.title} author={result.author_name} />
+            <BookCard
+              key={result.key}
+              title={result.title}
+              author={result.author_name}
+            />
           ))}
         </div>
       )}
