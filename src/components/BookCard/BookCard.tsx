@@ -3,11 +3,10 @@ import './BookCard.scss';
 interface BookCardProps {
   title: string;
   author: string[]; // Författare som en array
-  year: number;
   img?: string;
 }
 
-export default function BookCard({ title, author, img, year }: BookCardProps) {
+export default function BookCard({ title, author, img }: BookCardProps) {
   let formattedAuthors: string;
 
   if (author.length > 3) {
@@ -28,9 +27,7 @@ export default function BookCard({ title, author, img, year }: BookCardProps) {
         }
         alt={title}
       />
-      <p className='BookCard__title'>
-        {title} ({year})
-      </p>
+      <p className='BookCard__title'>{title}</p>
       <p className='BookCard__author'>{formattedAuthors}</p>
     </div>
   );
