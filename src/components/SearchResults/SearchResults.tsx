@@ -21,18 +21,25 @@ const SearchResults = ({ results }: SearchResultProps) => {
 
   return (
     <div className='SearchResults'>
-      <h1>Search results for: "{query}"</h1>
+      <h2>Search results for: "{query}"</h2>
       {passedResults.length === 0 ? (
         <p>No results found.</p>
       ) : (
         <div className='SearchResults__Grid'>
-          {passedResults.map((result) => (
-            <BookCard
-              key={result.key}
-              title={result.title}
-              author={result.author_name}
-            />
-          ))}
+          {passedResults.map((result) => {
+            const coverUrl = result.cover_i
+              ? `https://covers.openlibrary.org/b/id/${result.cover_i}-L.jpg`
+              : 'https://placehold.co/150x220?text=Cover+unavailable';
+
+            return (
+              <BookCard
+                key={result.key}
+                title={result.title}
+                author={result.author_name}
+                img={coverUrl}
+              />
+            );
+          })}
         </div>
       )}
     </div>
