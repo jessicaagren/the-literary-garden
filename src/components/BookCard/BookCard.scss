@@ -6,7 +6,8 @@
   justify-content: flex-start;
   align-items: center;
   flex-direction: column;
-  max-width: 15vw;
+  width: 10vw;
+  min-width: 150px;
   gap: 0.5rem;
   position: relative;
 
@@ -17,25 +18,28 @@
 }
 
 .BookCard__image {
-  max-width: 15vw;
-  height: auto;
+  width: 100%;
+  aspect-ratio: 2 / 3;
+  object-fit: cover;
+  //   border-radius: var.$radius;
 }
 
 .BookCard__title {
   font-weight: bold;
-  font-size: 1.3rem;
+  font-size: 1rem;
   font-family: var.$font-mixone;
   //   font-family: var.$font-tommy;
 }
 
 .BookCard__author {
   //   font-style: italic;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   font-family: var.$font-tommy;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   max-width: 100%;
+  justify-self: flex-end;
 }
 
 .BookCard__icon-wrapper {
