@@ -33,7 +33,7 @@ export default function Button({
 
   return (
     <button
-      className={`BookCard__icon ${className}`}
+      className={`Button ${className}`}
       onClick={handleClick}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}>
