@@ -6,8 +6,9 @@ import { useNavigate } from 'react-router-dom';
 export type BookSearchResult = {
   key: string;
   author_name: string[];
-  first_publish_year: number;
+  //   first_publish_year: number;
   title: string;
+  cover_i: number;
 };
 
 type SearchBarProps = {
