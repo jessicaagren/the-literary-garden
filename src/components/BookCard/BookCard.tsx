@@ -19,7 +19,7 @@ export default function BookCard({ title, author = [], img }: BookCardProps) {
 
   return (
     <div className='BookCard'>
-      <FavouritesButton className='BookCard__icon-wrapper' />
+      <FavouritesButton />
       <img className='BookCard__image' src={img} alt={title} />
       <p className='BookCard__title'>{title}</p>
       <p className='BookCard__author'>{formattedAuthors}</p>

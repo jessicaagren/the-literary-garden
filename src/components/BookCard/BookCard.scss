@@ -41,36 +41,3 @@
   max-width: 100%;
   justify-self: flex-end;
 }
-
-.BookCard__icon-wrapper {
-  position: absolute;
-  top: 0.5rem;
-  right: 0.5rem;
-  background-color: var.$white;
-  border: 1px solid var.$darkbrown;
-  //   max-width: 2.5rem;
-  //   max-height: 2.5rem;
-  height: 2.5rem;
-  width: 2.5rem;
-  border-radius: 50%;
-  @include flex-center;
-}
-
-.BookCard__icon {
-  font-size: 1.5rem;
-}
-
-.BookCard .BookCard__icon {
-  transition: opacity 0.3s ease, color 0.3s ease, fill 0.3s ease;
-  opacity: 1;
-}
-
-.BookCard .BookCard__icon-wrapper:hover .BookCard__icon {
-  color: var.$brown;
-  fill: var.$brown;
-}
-
-.BookCard__icon__check {
-  color: var.$orange;
-  fill: var.$orange;
-}

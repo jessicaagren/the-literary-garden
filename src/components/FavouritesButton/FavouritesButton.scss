@@ -1,1 +1,36 @@
 @use '../../styles/variables' as var;
+@import '../../styles/mixins.scss';
+
+.FavouritesButton {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  background-color: var.$white;
+  border: 1px solid var.$darkbrown;
+  height: 2.5rem;
+  width: 2.5rem;
+  border-radius: 50%;
+  @include flex-center;
+  cursor: pointer;
+
+  &__icon {
+    font-size: 1.5rem;
+    transition: opacity 0.3s ease, color 0.3s ease, fill 0.3s ease;
+    opacity: 1;
+  }
+
+  &:hover .FavouritesButton__icon {
+    color: var.$brown;
+    fill: var.$brown;
+  }
+
+  &.clicked:hover .FavouritesButton__icon {
+    color: var.$brown;
+    fill: var.$brown;
+  }
+
+  &__icon__check {
+    color: var.$orange;
+    fill: var.$orange;
+  }
+}

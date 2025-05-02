@@ -17,21 +17,21 @@ export default function FavouritesButton({ className = '' }: ButtonProps) {
 
   const getIcon = () => {
     if (!isClicked) {
-      return <FaHeartCirclePlus className='BookCard__icon' />;
+      return <FaHeartCirclePlus className='FavouritesButton__icon' />;
     }
 
     if (!hasHoverLeftOnce) {
       return (
-        <FaHeartCircleCheck className='BookCard__icon BookCard__icon__check' />
+        <FaHeartCircleCheck className='FavouritesButton__icon FavouritesButton__icon__check' />
       );
     }
 
     if (isHovered) {
-      return <FaHeartCircleMinus className='BookCard__icon' />;
+      return <FaHeartCircleMinus className='FavouritesButton__icon' />;
     }
 
     return (
-      <FaHeartCircleCheck className='BookCard__icon BookCard__icon__check' />
+      <FaHeartCircleCheck className='FavouritesButton__icon FavouritesButton__icon__check' />
     );
   };
 
@@ -54,7 +54,7 @@ export default function FavouritesButton({ className = '' }: ButtonProps) {
 
   return (
     <button
-      className={`FavouritesButton ${className}`}
+      className={`FavouritesButton ${isClicked ? 'clicked' : ''} ${className}`}
       onClick={handleClick}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}>
