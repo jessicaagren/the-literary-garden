@@ -1,3 +1,5 @@
+@import '../../styles/mixins.scss';
+
 .SearchResults {
   padding: 2rem;
   gap: 2rem;
@@ -12,4 +14,9 @@
   justify-content: center;
   flex-wrap: wrap;
   gap: 3rem;
+}
+
+.SearchResults__Loading {
+  @include flex-center;
+  flex: 1;
 }

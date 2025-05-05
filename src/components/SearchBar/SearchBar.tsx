@@ -31,10 +31,7 @@ export default function SearchBar({ onResults }: SearchBarProps) {
       onResults(jsonData.docs);
     }
 
-    navigate(`/search?query=${searchInput}`, {
-      state: { results: jsonData.docs },
-    });
-
+    navigate(`/search?query=${searchInput}`);
     setSearchInput('');
   };
 
