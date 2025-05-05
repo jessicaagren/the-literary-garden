@@ -5,7 +5,8 @@ import MyBooksPage from './routes/MyBooksPage';
 import BrowsePage from './routes/BrowsePage';
 import SearchPage from './routes/SearchPage';
 import HomePage from './routes/HomePage';
-import BookDetailsPage from './routes/BookDetailsPage';
+import BookDetailsPage from './routes/BookDetailsPage/BookDetailsPage';
+import { FavouritesContextProvider } from './contexts/Context';
 
 const router = createBrowserRouter([
   {
@@ -24,17 +25,19 @@ const router = createBrowserRouter([
       {
         path: 'search',
         element: <SearchPage />,
-        children: [
-          {
-            path: ':bookid',
-            element: <BookDetailsPage />,
-          },
-        ],
+      },
+      {
+        path: 'search/:bookid',
+        element: <BookDetailsPage />,
       },
     ],
   },
 ]);
 
 export default function App() {
-  return <RouterProvider router={router} />;
+  return (
+    <FavouritesContextProvider>
+      <RouterProvider router={router} />
+    </FavouritesContextProvider>
+  );
 }
