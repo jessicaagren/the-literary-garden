@@ -1,20 +1,16 @@
 import { NavLink } from 'react-router-dom';
 import './NavBar.scss';
 import SearchBar from '../SearchBar/SearchBar';
+import FlowerComponent from '../FlowerComponent/FlowerComponent';
 
 export default function Navbar() {
   return (
     <nav className='NavBar'>
       <NavLink to='/' className='NavBar__title_wrapper'>
-        <img src='src\assets\media\favicon.svg'></img>
+        <FlowerComponent />
         <h1 className='NavBar__title'>The Literary Garden</h1>
       </NavLink>
       <div className='NavBar__menu'>
-        {/* <NavLink
-          to='/'
-          className={({ isActive }) => `Link ${isActive ? 'active' : ''}`}>
-          Home
-        </NavLink> */}
         <NavLink
           to='/my-books'
           className={({ isActive }) => `Link ${isActive ? 'active' : ''}`}>
@@ -26,12 +22,6 @@ export default function Navbar() {
           Browse
         </NavLink>
         <SearchBar />
-
-        {/* <NavLink
-          to='/search'
-          className={({ isActive }) => `Link ${isActive ? 'active' : ''}`}>
-          Search
-        </NavLink> */}
       </div>
     </nav>
   );

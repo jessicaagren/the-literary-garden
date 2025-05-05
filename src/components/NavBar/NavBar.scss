@@ -62,23 +62,4 @@ a {
   flex-direction: row;
 
   gap: 1rem;
-
-  & img {
-    max-height: 3.5rem;
-    width: auto;
-
-    &:hover {
-      //   background-color: black;
-      animation: rotate 3s ease-in-out infinite;
-    }
-  }
-}
-
-@keyframes rotate {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
 }
