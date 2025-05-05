@@ -1,0 +1,59 @@
+@use '../../styles/variables.scss' as var;
+@import '../../styles/mixins.scss';
+
+// .BookDetailsPage {
+//   display: flex;
+//   flex-direction: row;
+//   flex-wrap: wrap;
+
+//   & img {
+//     max-width: 30%;
+//     height: auto;
+//     aspect-ratio: 2 / 3;
+//   }
+
+//   & * {
+//     margin: 1rem;
+//   }
+// }
+
+// .BookDetailsPage__Text {
+//   width: auto;
+// }
+
+.BookDetailsPage {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 1rem;
+  flex-wrap: wrap;
+  padding: 2rem;
+
+  & img {
+    width: auto;
+    max-width: 30%;
+    height: auto;
+    aspect-ratio: 2 / 3;
+    object-fit: contain;
+    // flex-shrink: 0;
+  }
+}
+
+.BookDetailsPage__Text {
+  flex: 1;
+  //   min-width: 50%;
+
+  & > * {
+    margin-bottom: 1rem;
+  }
+
+  p {
+    font-family: var.$font-tommy;
+  }
+}
+
+.BookDetailsPage__Loading,
+.BookDetailsPage__BookNotFound {
+  @include flex-center;
+  flex: 1;
+}
