@@ -4,6 +4,7 @@
 
   &.rotate-always {
     animation: rotate 3s ease-in-out infinite;
+    max-height: 7rem;
   }
 
   &:hover {
