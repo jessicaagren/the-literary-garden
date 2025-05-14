@@ -1,12 +1,11 @@
 import { useState } from 'react';
-import './SearchBar.scss';
-import { FaSearch } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
+import { FaSearch } from 'react-icons/fa';
+import './SearchBar.scss';
 
 export type BookSearchResult = {
   key: string;
   author_name: string[];
-  //   first_publish_year: number;
   title: string;
   cover_i: number;
 };
@@ -20,19 +19,21 @@ export default function SearchBar({ onResults }: SearchBarProps) {
   const navigate = useNavigate();
 
   const handleSearch = async () => {
-    if (!searchInput.trim()) return;
+    const query = searchInput.trim();
+    if (!query) return;
 
-    const data = await fetch(
-      `https://openlibrary.org/search.json?title=${searchInput}`
-    );
-    const jsonData = await data.json();
+    try {
+      const res = await fetch(
+        `https://openlibrary.org/search.json?title=${query}`
+      );
+      const data = await res.json();
 
-    if (onResults) {
-      onResults(jsonData.docs);
+      onResults?.(data.docs);
+      navigate(`/search?query=${query}`);
+      setSearchInput('');
+    } catch (err) {
+      console.error('Search error:', err);
     }
-
-    navigate(`/search?query=${searchInput}`);
-    setSearchInput('');
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
