@@ -1,4 +1,4 @@
-# The Literary Garden
+# The Literary Garden 🌻
 
 This is a project that fetches API:s from _Open Library_ and gives the user the opportunity to search for books and save them as favourites, mark as read and give reviews.
 
