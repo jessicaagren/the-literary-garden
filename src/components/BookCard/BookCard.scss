@@ -6,6 +6,7 @@
   justify-content: flex-start;
   align-items: center;
   flex-direction: column;
+  height: 100%;
   width: 10vw;
   min-width: 150px;
   gap: 0.5rem;
@@ -35,9 +36,14 @@
   //   font-style: italic;
   font-size: 0.8rem;
   font-family: var.$font-tommy;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  // white-space: nowrap;
+  // overflow: hidden;
+  // text-overflow: ellipsis;
   max-width: 100%;
   justify-self: flex-end;
+}
+
+.BookCard .ReadButton {
+  margin-top: auto;
+  font-size: 0.8rem;
 }

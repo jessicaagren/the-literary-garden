@@ -2,29 +2,12 @@
 
 .Button {
   padding: 1rem;
-  width: 25%;
+  width: 100%;
   border: none;
   border-radius: var.$radius;
   background-color: var.$white;
   cursor: pointer;
-  //   transition: transform 0.1s ease, background-color 0.2s ease;
   transition: transform 0.1s ease, background-color 0.2s ease, color 0.2s ease;
-
-  //   &:hover {
-  //     background-color: var.$pink;
-  //   }
-
-  //   &:active {
-  //     transform: scale(0.95);
-  //   }
-
-  //   &.Link {
-  //     color: var.$darkbrown;
-  //     font-size: 2rem;
-  //     font-family: Mixone;
-  //     margin-bottom: -5px;
-  //     padding: 0.5rem;
-  //     border-radius: var.$radius;
 
   &:hover {
     background-color: var.$pink;
@@ -34,4 +17,8 @@
   &:active {
     transform: scale(0.95);
   }
+}
+
+.Button.Button__HomePage {
+  width: 25%;
 }

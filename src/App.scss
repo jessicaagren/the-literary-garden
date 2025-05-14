@@ -2,7 +2,6 @@
 
 * {
   margin: 0;
-  color: var.$darkbrown;
 }
 
 #root {
@@ -13,11 +12,13 @@
 
 html,
 body {
+  color: var.$darkbrown;
   min-height: 100%;
   width: 100%;
   max-width: 100%;
   font-family: var.$font-mixone;
   font-size: 1.1rem;
+  overflow-x: hidden;
 }
 
 body {
@@ -36,6 +37,10 @@ button,
 input {
   font-family: var.$font-mixone;
   font-size: 1.1rem;
+}
+
+a {
+  color: var.$darkbrown;
 }
 
 @font-face {
