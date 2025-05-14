@@ -1,12 +1,13 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import './App.scss';
 import RootLayout from './layouts/RootLayout';
-import MyBooksPage from './routes/MyBooksPage';
-import BrowsePage from './routes/BrowsePage';
+import MyBooksPage from './routes/MyBooksPage/MyBooksPage';
+import BrowsePage from './routes/BrowsePage/BrowsePage';
 import SearchPage from './routes/SearchPage';
 import HomePage from './routes/HomePage';
 import BookDetailsPage from './routes/BookDetailsPage/BookDetailsPage';
-import { FavouritesContextProvider } from './contexts/Context';
+import { BooksContextProvider } from './contexts/BooksContext';
+import StatsPage from './routes/StatsPage/StatsPage';
 
 const router = createBrowserRouter([
   {
@@ -19,6 +20,10 @@ const router = createBrowserRouter([
         element: <MyBooksPage />,
       },
       {
+        path: 'my-stats',
+        element: <StatsPage />,
+      },
+      {
         path: 'browse',
         element: <BrowsePage />,
       },
@@ -27,7 +32,7 @@ const router = createBrowserRouter([
         element: <SearchPage />,
       },
       {
-        path: 'search/:bookid',
+        path: 'books/:bookid',
         element: <BookDetailsPage />,
       },
     ],
@@ -36,8 +41,8 @@ const router = createBrowserRouter([
 
 export default function App() {
   return (
-    <FavouritesContextProvider>
+    <BooksContextProvider>
       <RouterProvider router={router} />
-    </FavouritesContextProvider>
+    </BooksContextProvider>
   );
 }
