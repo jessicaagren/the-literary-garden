@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
-import './Button.scss';
 import { ReactNode } from 'react';
+import './Button.scss';
 
 interface ButtonProps {
   className?: string;
@@ -13,7 +13,7 @@ interface ButtonProps {
 }
 
 export default function Button({
-  className,
+  className = '',
   title,
   to,
   onClick,
@@ -26,18 +26,21 @@ export default function Button({
   const handleClick = () => {
     if (to) {
       navigate(to);
-    } else if (onClick) {
-      onClick();
+    } else {
+      onClick?.();
     }
   };
 
   return (
     <button
       className={`Button ${className}`}
-      onClick={handleClick}
+      onClick={(e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        handleClick();
+      }}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}>
-      {' '}
       {title}
       {children}
     </button>
