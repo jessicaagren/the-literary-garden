@@ -18,7 +18,7 @@ Then run `npm run dev` to compile and run the project.
 
 ## API's
 
-The project uses [Open Library API]([https://anapioficeandfire.com/](https://openlibrary.org/developers/api)).
+The project uses [Open Library API](https://openlibrary.org/developers/api).
 
 ## Technologies
 
