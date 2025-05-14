@@ -1,8 +1,9 @@
-import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import BookCard from '../BookCard/BookCard';
-import FlowerComponent from '../FlowerComponent/FlowerComponent';
 import './SearchResults.scss';
+import { BookType } from '../../types/BookType';
+import { useFetch } from '../../hooks/useFetch';
+import FlowerIcon from '../FlowerIcon/FlowerIcon';
 
 type BookSearchResult = {
   key: string;
@@ -11,66 +12,55 @@ type BookSearchResult = {
   cover_i: number;
 };
 
-const SearchResults = () => {
+export default function SearchResults() {
   const location = useLocation();
-  const [results, setResults] = useState<BookSearchResult[] | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
-
   const searchParams = new URLSearchParams(location.search);
   const query = searchParams.get('query');
 
-  useEffect(() => {
-    const fetchResults = async () => {
-      if (!query) return;
+  const { data, isLoading, error } = useFetch<{ docs: BookSearchResult[] }>(
+    query ? `https://openlibrary.org/search.json?title=${query}` : null
+  );
 
-      setIsLoading(true);
-
-      const res = await fetch(
-        `https://openlibrary.org/search.json?title=${query}`
-      );
-      const data = await res.json();
-
-      setResults(data.docs);
-      setIsLoading(false);
-    };
-
-    fetchResults();
-  }, [query]);
+  const results: BookType[] =
+    data?.docs.map((result, index) => ({
+      key: result.key,
+      title: result.title,
+      cover_i: result.cover_i,
+      covers: result.cover_i ? [result.cover_i] : [],
+      authors:
+        result.author_name?.map((name, i) => ({
+          author: {
+            key: `author-${index}-${i}`,
+            name,
+          },
+        })) || [],
+    })) || [];
 
   if (isLoading) {
     return (
       <div className='SearchResults__Loading'>
-        <FlowerComponent alwaysRotating />
+        <FlowerIcon alwaysRotating />
       </div>
     );
+  }
+
+  if (error) {
+    return <div className='SearchResults__Error'>{error.message}</div>;
   }
 
   return (
     <div className='SearchResults'>
       <h2>Search results for: "{query}"</h2>
-      {results?.length === 0 ? (
+
+      {results.length === 0 ? (
         <p>No results found.</p>
       ) : (
         <div className='SearchResults__Grid'>
-          {results?.map((result) => {
-            const coverUrl = result.cover_i
-              ? `https://covers.openlibrary.org/b/id/${result.cover_i}-L.jpg`
-              : 'https://placehold.co/150x220?text=Cover+unavailable';
-
-            return (
-              <BookCard
-                key={result.key}
-                title={result.title}
-                author={result.author_name}
-                img={coverUrl}
-                bookId={result.key.split('/').pop()!}
-              />
-            );
-          })}
+          {results.map((book) => (
+            <BookCard key={book.key} book={book} />
+          ))}
         </div>
       )}
     </div>
   );
-};
-
-export default SearchResults;
+}
