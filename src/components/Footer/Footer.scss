@@ -5,4 +5,8 @@
   min-height: 3rem;
   background-color: var.$darkerbeige;
   @include flex-center;
+  .SocialsIcons {
+    display: flex;
+    gap: 1rem;
+  }
 }
