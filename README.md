@@ -6,7 +6,7 @@ This is a project that fetches API:s from _Open Library_ and gives the user the 
 
 - Search for books and read information about them.
 - Save books as favourites and as read.
-- Rating and reviewing books.
+- Rate and review books.
 
 ## Download and run project
 
