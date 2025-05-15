@@ -1,0 +1,25 @@
+@use '../../styles/variables' as var;
+
+.StarRating {
+  display: flex;
+  gap: 0.25rem;
+
+  input[type='radio'] {
+    display: none;
+  }
+
+  .Star {
+    color: var.$white;
+    transition: transform 0.2s ease, color 0.2s ease;
+    cursor: pointer;
+
+    &--active {
+      color: var.$yellow;
+      text-shadow: 0 0 2px white, 0 0 10px var.$yellow;
+    }
+
+    &:hover {
+      transform: scale(1.2);
+    }
+  }
+}
