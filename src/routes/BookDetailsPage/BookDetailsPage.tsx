@@ -1,114 +1,178 @@
-import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { useEffect, useState, KeyboardEvent } from 'react';
+import FlowerComponent from '../../components/FlowerIcon/FlowerIcon';
+import FavouritesButton from '../../components/FavouritesButton/FavouritesButton';
+import ReadButton from '../../components/ReadButton/ReadButton';
+import StarRating from '../../components/StarRating/StarRating';
+import { useBooksContext } from '../../contexts/BooksContext';
+import { BookType } from '../../types/BookType';
+import { BookEditionType } from '../../types/BookEditionType';
 import './BookDetailsPage.scss';
-import FlowerComponent from '../../components/FlowerComponent/FlowerComponent';
 
 export default function BookDetailsPage() {
   const { bookid } = useParams();
-  const [book, setBook] = useState<any>(null);
-  const [author, setAuthor] = useState<string | null>(null);
-  const [edition, setEdition] = useState<any>(null);
+  const [book, setBook] = useState<BookType | null>(null);
+  const [edition, setEdition] = useState<BookEditionType | null>(null);
+  const [authors, setAuthors] = useState<string[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const [currentComment, setCurrentComment] = useState('');
+
+  const { state, dispatch } = useBooksContext();
+  const bookKey = book ? book.key : `/works/${bookid}`;
+  const savedComments = Array.isArray(state.comments[bookKey])
+    ? state.comments[bookKey]
+    : [];
 
   useEffect(() => {
     if (!bookid) return;
 
-    const fetchData = async () => {
+    const fetchAllData = async () => {
       try {
-        const res = await fetch(`https://openlibrary.org/works/${bookid}.json`);
-        const data = await res.json();
-        setBook(data);
+        setIsLoading(true);
 
-        if (data.authors?.[0]?.author?.key) {
-          const authorRes = await fetch(
-            `https://openlibrary.org${data.authors[0].author.key}.json`
-          );
-          const authorData = await authorRes.json();
-          setAuthor(authorData.name);
-        }
+        const bookRes = await fetch(
+          `https://openlibrary.org/works/${bookid}.json`
+        );
+        if (!bookRes.ok) throw new Error('Book response not OK');
+        const bookData: BookType = await bookRes.json();
 
-        const editionsRes = await fetch(
+        const editionRes = await fetch(
           `https://openlibrary.org/works/${bookid}/editions.json?limit=1`
         );
-        const editionsData = await editionsRes.json();
-        setEdition(editionsData.entries[0]);
+        if (!editionRes.ok) throw new Error('Edition response not OK');
+        const editionData = await editionRes.json();
+        const firstEdition = editionData.entries?.[0] ?? null;
+
+        const authorKeys = bookData.authors?.map((a) => a?.author?.key) || [];
+        const authorData = await Promise.all(
+          authorKeys.map((key) =>
+            fetch(`https://openlibrary.org${key}.json`).then((res) => {
+              if (!res.ok) throw new Error('Author fetch failed');
+              return res.json();
+            })
+          )
+        );
+
+        setBook(bookData);
+        setEdition(firstEdition);
+        setAuthors(authorData.map((a) => a?.name || 'Unknown'));
       } catch (err) {
-        console.error('Error fetching book data:', err);
+        console.error('Error fetching data:', err);
+        setError('Failed to load book details.');
       } finally {
         setIsLoading(false);
       }
     };
 
-    fetchData();
+    fetchAllData();
   }, [bookid]);
+
+  const handleKeyDown = (e: KeyboardEvent<HTMLTextAreaElement>) => {
+    if (e.key === 'Enter' && !e.shiftKey && currentComment.trim()) {
+      e.preventDefault();
+      dispatch({
+        type: 'SET_COMMENT',
+        payload: { bookKey, comment: currentComment.trim() },
+      });
+      setCurrentComment('');
+    }
+  };
 
   if (isLoading) {
     return (
       <div className='BookDetailsPage__Loading'>
-        <FlowerComponent alwaysRotating={true} />
+        <FlowerComponent alwaysRotating />
       </div>
     );
   }
 
-  if (!book) {
+  if (error || !book) {
     return (
       <div className='BookDetailsPage__BookNotFound'>
-        <p>Book not found.</p>
+        <p>{error || 'Book not found.'}</p>
       </div>
     );
   }
 
-  const coverId = book.covers?.[0] || edition?.covers?.[0];
-  const coverUrl = coverId
+  // --- Utility functions ---
+  const formattedAuthors =
+    authors.length === 0
+      ? 'Unknown author'
+      : authors.length === 2
+      ? `${authors[0]} & ${authors[1]}`
+      : authors.join(', ');
+
+  const coverId = (book.cover_i || book.covers?.[0]) as number | undefined;
+  const img = coverId
     ? `https://covers.openlibrary.org/b/id/${coverId}-L.jpg`
-    : 'https://placehold.co/200x300?text=No+Cover';
+    : 'https://placehold.co/200x300?text=Cover+unavailable';
 
-  const description =
-    typeof book.description === 'string'
-      ? book.description
-      : book.description?.value ||
-        edition?.description ||
-        'Ingen beskrivning tillgänglig.';
+  const extractValue = (field?: string | { value?: string }): string | null =>
+    typeof field === 'string' ? field : field?.value ?? null;
 
-  const firstSentence =
-    book.first_sentence?.value ||
-    edition?.first_sentence?.value ||
-    'Ingen första mening tillgänglig.';
-
-  const subjects =
-    book.subjects?.length > 0
-      ? book.subjects.slice(0, 5).join(', ')
-      : 'Inga ämnen tillgängliga';
+  const infoItems = [
+    { label: 'Author', value: formattedAuthors },
+    { label: 'Published', value: edition?.publish_date ?? null },
+    { label: 'Pages', value: edition?.number_of_pages?.toString() ?? null },
+    { label: 'Genre', value: book.genre?.slice(0, 5).join(', ') ?? null },
+    { label: 'Subjects', value: book.subjects?.slice(0, 5).join(', ') ?? null },
+    {
+      label: 'First sentence',
+      value:
+        extractValue(book.first_sentence) ||
+        extractValue(edition?.first_sentence),
+    },
+    {
+      label: 'Description',
+      value:
+        extractValue(book.description) || extractValue(edition?.description),
+    },
+  ];
 
   return (
     <div className='BookDetailsPage'>
-      <img src={coverUrl} alt={`Omslag för ${book.title}`} />
+      <div className='BookDetailsPage__ImageWrapper'>
+        <FavouritesButton book={{ key: book.key }} />
+        <img src={img} alt={`Omslag för ${book.title}`} />
+        <div className='BookDetailsPage__ImageWrapper__ButtonWrapper'>
+          <ReadButton
+            book={{ ...book, number_of_pages: edition?.number_of_pages }}
+          />
+          <StarRating bookKey={book.key} />
+        </div>
+      </div>
+
       <div className='BookDetailsPage__Text'>
         <h2>{book.title}</h2>
-        {author && (
-          <p>
-            <strong>Author:</strong> {author}
+        {infoItems.map(({ label, value }) => (
+          <p key={label}>
+            <span>{label}:</span> {value || 'Not available'}
           </p>
-        )}
-        {edition?.publish_date && (
-          <p>
-            <strong>Published:</strong> {edition.publish_date}
-          </p>
-        )}
-        {edition?.number_of_pages && (
-          <p>
-            <strong>Pages:</strong> {edition.number_of_pages}
-          </p>
-        )}
-        <p>
-          <strong>First sentence:</strong> {firstSentence}
-        </p>
-        <p>
-          <strong>Subjects:</strong> {subjects}
-        </p>
-        <p>
-          <strong>Description:</strong> {description}
-        </p>
+        ))}
+
+        <div className='BookDetailsPage__Comment'>
+          <label htmlFor='comment'>
+            <span>Your comment:</span>
+          </label>
+          <textarea
+            id='comment'
+            value={currentComment}
+            onChange={(e) => setCurrentComment(e.target.value)}
+            onKeyDown={handleKeyDown}
+            placeholder='Press Enter to save...'
+          />
+          {savedComments.length > 0 && (
+            <div className='BookDetailsPage__Comment__List'>
+              <span>Comments:</span>
+              <ul>
+                {savedComments.map((comment, index) => (
+                  <li key={index}>{comment}</li>
+                ))}
+              </ul>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );

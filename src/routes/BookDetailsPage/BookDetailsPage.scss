@@ -1,26 +1,6 @@
 @use '../../styles/variables.scss' as var;
 @import '../../styles/mixins.scss';
 
-// .BookDetailsPage {
-//   display: flex;
-//   flex-direction: row;
-//   flex-wrap: wrap;
-
-//   & img {
-//     max-width: 30%;
-//     height: auto;
-//     aspect-ratio: 2 / 3;
-//   }
-
-//   & * {
-//     margin: 1rem;
-//   }
-// }
-
-// .BookDetailsPage__Text {
-//   width: auto;
-// }
-
 .BookDetailsPage {
   display: flex;
   flex-direction: row;
@@ -29,26 +9,29 @@
   flex-wrap: wrap;
   padding: 2rem;
 
-  & img {
+  .BookDetailsPage__ImageWrapper {
+    position: relative;
     width: auto;
-    max-width: 30%;
+    max-width: 40%;
     height: auto;
-    aspect-ratio: 2 / 3;
-    object-fit: contain;
-    // flex-shrink: 0;
+
+    & img {
+      aspect-ratio: 2 / 3;
+      object-fit: contain;
+    }
   }
 }
 
 .BookDetailsPage__Text {
   flex: 1;
-  //   min-width: 50%;
 
   & > * {
     margin-bottom: 1rem;
   }
 
-  p {
+  span {
     font-family: var.$font-tommy;
+    font-weight: bold;
   }
 }
 
@@ -56,4 +39,55 @@
 .BookDetailsPage__BookNotFound {
   @include flex-center;
   flex: 1;
+}
+
+.BookDetailsPage__ImageWrapper__ButtonWrapper {
+  width: 100%;
+}
+
+.BookDetailsPage__Comment {
+  margin-top: 20px;
+}
+
+.BookDetailsPage__Comment label {
+  margin-bottom: 0rem;
+  display: block;
+}
+
+.BookDetailsPage__Comment textarea {
+  width: 30%;
+  height: 60px;
+  padding: 0.5rem;
+  font-size: 1rem;
+  border: 1px solid var.$white;
+  border-radius: var.$radius;
+  resize: vertical;
+  margin-bottom: 0.5rem;
+  font-family: var.$font-tommy;
+}
+
+.BookDetailsPage__Comment textarea:focus {
+  border-color: var.$pink;
+  outline: none;
+}
+
+.BookDetailsPage__Comment__List {
+  margin-top: 0.5rem;
+}
+
+.BookDetailsPage__Comment__List span {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.BookDetailsPage__Comment__List ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.BookDetailsPage__Comment__List li {
+  background-color: var.$white;
+  border-radius: var.$radius;
+  padding: 0.5rem;
+  margin-bottom: 0.5rem;
 }
